@@ -1,0 +1,22 @@
+/vendor/
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/sites/default/files/
+/web/sites/simpletest/
+/.idea/
+.DS_Store
+
+# Node-based theme/tooling
+**/node_modules/
+**/dist/
+**/.env
+
+# Local Drupal overrides (don’t share secrets)
+web/sites/*/settings.local.php
+web/sites/*/services.local.yml
+
+# DB dumps & backups
+*.sql
+*.sql.gz
