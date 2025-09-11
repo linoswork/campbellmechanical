@@ -1,0 +1,20 @@
+uuid: d97236ce-fde8-463d-9477-de7baf511769
+langcode: en
+status: true
+dependencies:
+  module:
+    - campbell_header
+  theme:
+    - campbell
+id: campbell_campbelltopbar
+theme: campbell
+region: pre_header
+weight: 0
+provider: null
+plugin: campbell_top_bar_block
+settings:
+  id: campbell_top_bar_block
+  label: 'Campbell Top Bar'
+  label_display: visible
+  provider: campbell_header
+visibility: {  }

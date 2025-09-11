@@ -1,0 +1,22 @@
+uuid: aa866d27-c54b-423f-87ac-55cd0d678bfc
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - campbell
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: campbell_powered
+theme: campbell
+region: pre_header
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

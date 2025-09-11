@@ -1,0 +1,2 @@
+/* Keeps space collapse smooth when topbar hides */
+#cm-topbar { will-change: transform; transform: translateY(0); }

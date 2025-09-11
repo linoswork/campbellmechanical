@@ -1,0 +1,9 @@
+header:
+  css:
+    theme:
+      assets/css/header.css: {}
+  js:
+    assets/js/topbar-hide-on-scroll.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings

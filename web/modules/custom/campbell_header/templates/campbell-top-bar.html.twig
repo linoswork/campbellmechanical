@@ -1,0 +1,17 @@
+{# Top bar that will hide on scroll. #}
+<div id="cm-topbar"
+     class="w-full bg-orange-600 text-white text-sm transition-transform duration-300 will-change-transform">
+  <div class="container mx-auto px-4 py-2 flex items-center justify-between gap-4">
+    <div class="flex flex-wrap items-center gap-4">
+      {% if hours %}<span class="opacity-90">{{ hours }}</span>{% endif %}
+      {% if email %}<a class="underline hover:no-underline" href="mailto:{{ email }}">{{ email }}</a>{% endif %}
+      {% if phone %}<a class="font-semibold" href="tel:{{ phone|replace({' ': '', '.': '', '-': ''}) }}">{{ phone }}</a>{% endif %}
+    </div>
+    {% if cta_text %}
+      <a href="{{ cta_url ?: '/contact' }}"
+         class="inline-flex items-center rounded-xl bg-white/10 px-3 py-1 hover:bg-white/20">
+        {{ cta_text }}
+      </a>
+    {% endif %}
+  </div>
+</div>

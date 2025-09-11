@@ -1,0 +1,22 @@
+uuid: 18989655-e760-4e6c-a1ff-36bbfd0d1227
+langcode: en
+status: false
+dependencies:
+  theme:
+    - campbell
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: campbell_primary_local_tasks
+theme: campbell
+region: pre_header
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

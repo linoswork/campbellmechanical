@@ -1,0 +1,20 @@
+{# Sticky header that remains after top bar scrolls away. #}
+<header id="cm-header"
+        class="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-b border-gray-100">
+  <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2">
+      {# drop your inline SVG or <img> logo #}
+      <span class="sr-only">Campbell Mechanical</span>
+      <img src="/themes/custom/YOURTHEME/logo.svg" alt="" class="h-8 w-auto">
+    </a>
+    {# Replace with your Drupal menu render if desired #}
+    <nav class="hidden md:flex items-center gap-6">
+      <a href="/about" class="hover:text-orange-600">About</a>
+      <a href="/services" class="hover:text-orange-600">Services</a>
+      <a href="/contact" class="hover:text-orange-600">Contact</a>
+      <a href="tel:{{ drupal_config('campbell_header.settings').get('phone')|replace({' ': '', '.': '', '-': ''}) }}"
+         class="rounded-xl border px-3 py-1 hover:bg-gray-50">Call</a>
+    </nav>
+    <button class="md:hidden" aria-label="Open menu">☰</button>
+  </div>
+</header>

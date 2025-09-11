@@ -1,0 +1,6 @@
+campbell_header.settings:
+  title: 'Campbell header settings'
+  description: 'Contact info and options for top bar + header.'
+  route_name: campbell_header.settings
+  parent: system.admin_config_system
+  weight: 99

@@ -1,0 +1,22 @@
+uuid: 6bca7bb9-5797-4d80-b261-7d3cc33ab821
+langcode: en
+status: false
+dependencies:
+  module:
+    - help
+  theme:
+    - campbell
+_core:
+  default_config_hash: VfPFqqxfkomud5CO8DUijw85QIl9GIxh_nIxLOYESxg
+id: campbell_help
+theme: campbell
+region: pre_header
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: b65d088b-cc0f-4b36-9fc8-1f1d24492595
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - campbell
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: campbell_content
+theme: campbell
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,7 @@
+name: Campbell Header
+type: module
+description: Top bar (auto-hide) + sticky main header blocks for Campbell Mechanical.
+core_version_requirement: ^10 || ^11
+package: Campbell
+dependencies:
+  - drupal:block

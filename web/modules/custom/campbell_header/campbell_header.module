@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function campbell_header_theme() {
+  return [
+    'campbell_top_bar' => [
+      'render element' => 'elements',
+      'template' => 'campbell-top-bar',
+    ],
+    'campbell_main_header' => [
+      'render element' => 'elements',
+      'template' => 'campbell-main-header',
+    ],
+  ];
+}

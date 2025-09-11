@@ -1,0 +1,7 @@
+campbell_header.settings:
+  path: '/admin/config/campbell/header'
+  defaults:
+    _form: '\Drupal\campbell_header\Form\HeaderSettingsForm'
+    _title: 'Campbell header settings'
+  requirements:
+    _permission: 'administer site configuration'

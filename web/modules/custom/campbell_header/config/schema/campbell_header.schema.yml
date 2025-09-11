@@ -1,0 +1,19 @@
+campbell_header.settings:
+  type: config_object
+  label: 'Campbell Header settings'
+  mapping:
+    phone:
+      type: text
+      label: 'Phone number'
+    email:
+      type: text
+      label: 'Email'
+    hours:
+      type: text
+      label: 'Hours'
+    cta_text:
+      type: text
+      label: 'Top bar CTA text'
+    cta_url:
+      type: text
+      label: 'Top bar CTA URL'

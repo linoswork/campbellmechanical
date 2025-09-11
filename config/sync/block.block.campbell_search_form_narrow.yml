@@ -1,0 +1,23 @@
+uuid: 064bfa8d-9902-4c1e-9c19-2b70eab3b0fd
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - campbell
+_core:
+  default_config_hash: yEBET0cqDbk8dkWzaJw-8CKft0961VBflsISoSR6Lj8
+id: campbell_search_form_narrow
+theme: campbell
+region: pre_header
+weight: -4
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (narrow)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

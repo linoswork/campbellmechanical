@@ -1,0 +1,28 @@
+name: campbell
+type: theme
+'base theme': stable9
+version: 1.0.0
+libraries:
+  - campbell/base
+  - campbell/messages
+  - core/normalize
+  - campbell/global
+libraries-extend:
+  user/drupal.user:
+    - campbell/user
+  core/drupal.dropbutton:
+    - campbell/dropbutton
+  core/drupal.dialog:
+    - campbell/dialog
+  file/drupal.file:
+    - campbell/file
+  core/drupal.progress:
+    - campbell/progress
+description: ''
+core_version_requirement: ^10
+generator: 'starterkit_theme:10.5.3'
+regions:
+  pre_header: 'Pre Header'
+  header: 'Header'
+  content: 'Content'
+  footer: 'Footer'
