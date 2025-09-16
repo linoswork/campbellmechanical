@@ -1,20 +1,53 @@
-{# Sticky header that remains after top bar scrolls away. #}
+{# Sticky white header that stays after the orange top bar scrolls away #}
+
 <header id="cm-header"
-        class="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-b border-gray-100">
-  <div class="container mx-auto px-4 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2">
-      {# drop your inline SVG or <img> logo #}
+  class="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-b border-gray-100">
+  <div class="container mx-auto px-4 h-20 flex items-center justify-between gap-4">
+
+    {# LEFT: Logo — update path if needed #}
+    <a href="{{ path('<front>') }}" class="flex items-center gap-2 shrink-0">
       <span class="sr-only">Campbell Mechanical</span>
-      <img src="/themes/custom/YOURTHEME/logo.svg" alt="" class="h-8 w-auto">
+      <img src="/themes/custom/campbell/logo.svg" alt="" class="h-10 w-auto" />
     </a>
-    {# Replace with your Drupal menu render if desired #}
-    <nav class="hidden md:flex items-center gap-6">
-      <a href="/about" class="hover:text-orange-600">About</a>
-      <a href="/services" class="hover:text-orange-600">Services</a>
-      <a href="/contact" class="hover:text-orange-600">Contact</a>
-      <a href="tel:{{ drupal_config('campbell_header.settings').get('phone')|replace({' ': '', '.': '', '-': ''}) }}"
-         class="rounded-xl border px-3 py-1 hover:bg-gray-50">Call</a>
+
+    {# CENTER: Main nav (tablet/desktop) #}
+    <nav class="block">
+      {{ menu }} {# <- render array; Drupal/Twig renders it #}
     </nav>
-    <button class="md:hidden" aria-label="Open menu">☰</button>
+
+    {# RIGHT: Phone + CTA (tablet/desktop) #}
+    <div class="hidden md:flex items-center gap-4">
+      {% if phone %}
+        <a href="tel:{{ phone|replace({' ': '', '.': '', '-': ''}) }}"
+           class="text-sm font-medium hover:text-orange-600">{{ phone }}</a>
+      {% endif %}
+      <a href="{{ cta_url }}"
+         class="inline-flex items-center rounded-xl bg-orange-600 text-white px-4 py-2 text-sm font-semibold hover:bg-orange-700">
+        {{ cta_text }}
+      </a>
+    </div>
+
+    {# Burger (phones only) #}
+    <button id="cm-nav-toggle"
+      class="md:hidden inline-flex items-center justify-center size-10 rounded-2xl border border-zinc-300"
+      aria-controls="cm-mobile-nav" aria-expanded="false">
+      <span class="sr-only">Toggle menu</span>☰
+    </button>
+  </div>
+
+  {# Mobile drawer: menu + phone/cta #}
+  <div id="cm-mobile-nav" class="hidden md:hidden border-t border-gray-100">
+    <div class="container mx-auto px-4 py-3 space-y-3">
+      {{ menu }}
+      <div class="flex items-center justify-between pt-2">
+        {% if phone %}
+          <a href="tel:{{ phone|replace({' ': '', '.': '', '-': ''}) }}" class="font-medium">{{ phone }}</a>
+        {% endif %}
+        <a href="{{ cta_url }}"
+           class="inline-flex items-center rounded-xl bg-orange-600 text-white px-3 py-2 text-sm font-semibold">
+          {{ cta_text }}
+        </a>
+      </div>
+    </div>
   </div>
 </header>

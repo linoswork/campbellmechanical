@@ -1,17 +1,51 @@
 {# Top bar that will hide on scroll. #}
-<div id="cm-topbar"
-     class="w-full bg-orange-600 text-white text-sm transition-transform duration-300 will-change-transform">
+<div id="cm-topbar" class="w-full bg-orange-600 text-white text-sm transition-transform duration-300 will-change-transform">
   <div class="container mx-auto px-4 py-2 flex items-center justify-between gap-4">
     <div class="flex flex-wrap items-center gap-4">
       {% if hours %}<span class="opacity-90">{{ hours }}</span>{% endif %}
       {% if email %}<a class="underline hover:no-underline" href="mailto:{{ email }}">{{ email }}</a>{% endif %}
-      {% if phone %}<a class="font-semibold" href="tel:{{ phone|replace({' ': '', '.': '', '-': ''}) }}">{{ phone }}</a>{% endif %}
+      {% if phone %}
+        <a class="font-semibold" href="tel:{{ phone|replace({' ': '', '.': '', '-': ''}) }}">{{ phone }}</a>
+      {% endif %}
     </div>
-    {% if cta_text %}
-      <a href="{{ cta_url ?: '/contact' }}"
-         class="inline-flex items-center rounded-xl bg-white/10 px-3 py-1 hover:bg-white/20">
-        {{ cta_text }}
-      </a>
-    {% endif %}
+
+    <div class="flex items-center gap-3">
+      {% if cta_text %}
+        <a href="{{ cta_url ?: '/contact' }}"
+           class="inline-flex items-center rounded-xl bg-white/10 px-3 py-1 hover:bg-white/20">
+          {{ cta_text }}
+        </a>
+      {% endif %}
+
+      {# Social icons (inline SVG, color = currentColor) #}
+      {% if facebook %}
+        <a href="{{ facebook }}" aria-label="Facebook" target="_blank" rel="noopener" class="hover:opacity-90">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.24 0-1.63.77-1.63 1.56v1.87h2.77l-.44 2.9h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94Z"/>
+          </svg>
+        </a>
+      {% endif %}
+      {% if instagram %}
+        <a href="{{ instagram }}" aria-label="Instagram" target="_blank" rel="noopener" class="hover:opacity-90">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2.2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Zm5.25-.95a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1Z"/>
+          </svg>
+        </a>
+      {% endif %}
+      {% if linkedin %}
+        <a href="{{ linkedin }}" aria-label="LinkedIn" target="_blank" rel="noopener" class="hover:opacity-90">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.5 8.5h4.9V24H.5V8.5Zm7.5 0h4.7v2.1h.1c.65-1.23 2.24-2.53 4.62-2.53 4.94 0 5.85 3.25 5.85 7.47V24h-4.9v-6.7c0-1.6-.03-3.65-2.23-3.65-2.24 0-2.58 1.74-2.58 3.54V24H8V8.5Z"/>
+          </svg>
+        </a>
+      {% endif %}
+      {% if youtube %}
+        <a href="{{ youtube }}" aria-label="YouTube" target="_blank" rel="noopener" class="hover:opacity-90">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M23.5 6.2a3.1 3.1 0 0 0-2.18-2.2C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.32.5A3.1 3.1 0 0 0 .5 6.2 32 32 0 0 0 0 12a32 32 0 0 0 .5 5.8 3.1 3.1 0 0 0 2.18 2.2c1.72.5 9.32.5 9.32.5s7.6 0 9.32-.5a3.1 3.1 0 0 0 2.18-2.2A32 32 0 0 0 24 12a32 32 0 0 0-.5-5.8ZM9.75 15.5v-7l6 3.5-6 3.5Z"/>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
   </div>
 </div>

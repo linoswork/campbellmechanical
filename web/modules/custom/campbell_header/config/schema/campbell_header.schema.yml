@@ -4,16 +4,19 @@ campbell_header.settings:
   mapping:
     phone:
       type: text
-      label: 'Phone number'
     email:
-      type: text
-      label: 'Email'
+      type: email
     hours:
       type: text
-      label: 'Hours'
     cta_text:
       type: text
-      label: 'Top bar CTA text'
     cta_url:
       type: text
-      label: 'Top bar CTA URL'
+    facebook:
+      type: text
+    instagram:
+      type: text
+    linkedin:
+      type: text
+    youtube:
+      type: text

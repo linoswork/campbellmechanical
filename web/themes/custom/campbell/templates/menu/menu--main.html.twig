@@ -1,0 +1,26 @@
+{% import _self as macros %}
+{{ macros.menu_links(items, attributes, 0) }}
+
+{% macro menu_links(items, attributes, level) %}
+  {% if items %}
+    {% set ul_classes = level == 0 ? 'flex items-center gap-8' : 'flex flex-col gap-2 py-2' %}
+    <ul{{ attributes.addClass(ul_classes) }}>
+      {% for item in items %}
+        {% set has_children = item.below is not empty %}
+        <li class="{{ level == 0 ? 'relative group' : '' }}">
+          {{ link(item.title, item.url, {
+            'class': [ level == 0 ? 'py-5 text-sm font-medium hover:opacity-80' : 'py-1' ]
+          }) }}
+          {% if has_children %}
+            <div class="absolute left-0 top-full min-w-56 rounded-2xl border border-zinc-200 bg-white p-3 shadow-xl
+                        invisible opacity-0 pointer-events-none
+                        group-hover:visible group-hover:opacity-100 group-hover:pointer-events-auto transition"
+                 role="menu">
+              {{ _self.menu_links(item.below, attributes.removeClass(ul_classes), level + 1) }}
+            </div>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

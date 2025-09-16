@@ -6,12 +6,27 @@
 function campbell_header_theme() {
   return [
     'campbell_top_bar' => [
-      'render element' => 'elements',
       'template' => 'campbell-top-bar',
+      'variables' => [
+        'phone' => NULL,
+        'email' => NULL,
+        'hours' => NULL,
+        'cta_text' => NULL,
+        'cta_url' => NULL,
+        'facebook' => NULL,
+        'instagram' => NULL,
+        'linkedin' => NULL,
+        'youtube' => NULL,
+      ],
     ],
     'campbell_main_header' => [
-      'render element' => 'elements',
       'template' => 'campbell-main-header',
+      'variables' => [
+        'menu' => NULL,       // <— render array from build()
+        'phone' => NULL,
+        'cta_text' => NULL,
+        'cta_url' => NULL,
+      ],
     ],
   ];
 }

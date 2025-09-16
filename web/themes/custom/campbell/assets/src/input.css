@@ -1,3 +1,12 @@
 @import "tailwindcss";
-@source "../../modules/custom/**/templates/**/*.twig";
+
+/* Scan THEME templates */
 @source "./templates/**/*.twig";
+/* Scan THEME JS if you add class strings there */
+@source "./**/*.js";
+
+/* Scan MODULE templates (correct path from assets/src → /web/modules/custom) */
+@source "../../../../../modules/custom/**/templates/**/*.twig";
+
+/* Temporary belt-and-suspenders to ensure md: utilities exist while wiring paths */
+.tw-safelist { @apply hidden md:block md:flex md:inline-flex md:hidden; }
