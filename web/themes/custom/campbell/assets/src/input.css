@@ -8,5 +8,30 @@
 /* Scan MODULE templates (correct path from assets/src → /web/modules/custom) */
 @source "../../../../../modules/custom/**/templates/**/*.twig";
 
-/* Temporary belt-and-suspenders to ensure md: utilities exist while wiring paths */
-.tw-safelist { @apply hidden md:block md:flex md:inline-flex md:hidden; }
+/* Campbell header (Tailwind) */
+@layer components {
+  .cm-header { @apply sticky top-0 z-50 bg-white border-b border-black/10; }
+
+  .cm-wrap { @apply max-w-[1200px] mx-auto px-4 py-3.5; }
+
+  .cm-header__grid {
+    @apply grid items-center gap-x-5;
+    /* true center: logo | nav | cta */
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .cm-header__logo img { @apply h-10 w-auto block; }
+
+  /* centered nav */
+  .cm-header__nav { @apply justify-self-center max-[980px]:hidden; }
+  .cm-header__nav ul.menu { @apply list-none flex gap-7 m-0 p-0; }
+  .cm-header__nav a { @apply no-underline font-semibold text-[#0f2147] hover:underline; }
+
+  /* right-side phone + CTA */
+  .cm-header__cta { @apply flex items-center gap-3.5 justify-self-end; }
+  .cm-header__phone { @apply no-underline font-semibold text-[#0f2147] hover:underline; }
+
+  .btn-quote {
+    @apply inline-block px-4 py-2.5 rounded-lg bg-[#ef520f] text-white font-bold no-underline hover:brightness-95 transition;
+  }
+}

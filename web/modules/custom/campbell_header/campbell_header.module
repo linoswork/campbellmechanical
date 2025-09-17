@@ -2,30 +2,50 @@
 
 /**
  * Implements hook_theme().
+ *
+ * Declares two templates:
+ *  - campbell_top_bar       (hours/email/social/optional CTA)
+ *  - campbell_main_header   (logo + primary menu + phone + CTA)
+ *
+ * IMPORTANT: The variables here must match what the blocks pass in their
+ * render arrays so Twig receives them as expected.
  */
-function campbell_header_theme() {
+function campbell_header_theme($existing, $type, $theme, $path) {
   return [
     'campbell_top_bar' => [
       'template' => 'campbell-top-bar',
       'variables' => [
-        'phone' => NULL,
-        'email' => NULL,
-        'hours' => NULL,
-        'cta_text' => NULL,
-        'cta_url' => NULL,
-        'facebook' => NULL,
+        'phone'     => NULL,
+        'email'     => NULL,
+        'hours'     => NULL,
+        'cta_text'  => NULL,
+        'cta_url'   => NULL,
+        'facebook'  => NULL,
         'instagram' => NULL,
-        'linkedin' => NULL,
-        'youtube' => NULL,
+        'linkedin'  => NULL,
+        'youtube'   => NULL,
       ],
     ],
+
     'campbell_main_header' => [
       'template' => 'campbell-main-header',
       'variables' => [
-        'menu' => NULL,       // <— render array from build()
-        'phone' => NULL,
-        'cta_text' => NULL,
-        'cta_url' => NULL,
+        // EXACTLY what the block passes.
+        'primary_menu' => NULL,
+        'logo' => [
+          'src' => NULL,
+          'alt' => NULL,
+        ],
+        'cta' => [
+          'label'   => NULL,
+          'url'     => NULL,
+          'new_tab' => NULL,
+        ],
+        'phone' => [
+          'show' => NULL,
+          'text' => NULL,
+          'href' => NULL,
+        ],
       ],
     ],
   ];

@@ -1,22 +1,28 @@
-campbell_header.settings:
-  type: config_object
-  label: 'Campbell Header settings'
+block.settings.campbell_main_header:
+  type: mapping
+  label: 'Campbell Main Header settings'
   mapping:
-    phone:
-      type: text
-    email:
-      type: email
-    hours:
-      type: text
-    cta_text:
-      type: text
-    cta_url:
-      type: text
-    facebook:
-      type: text
-    instagram:
-      type: text
-    linkedin:
-      type: text
-    youtube:
-      type: text
+    logo_src:
+      type: string
+      label: 'Logo URL'
+    logo_alt:
+      type: string
+      label: 'Logo alt text'
+    cta_label:
+      type: string
+      label: 'CTA button text'
+    cta_path:
+      type: string
+      label: 'CTA link'
+    cta_new_tab:
+      type: boolean
+      label: 'Open CTA in new tab'
+    show_phone:
+      type: boolean
+      label: 'Show phone number'
+    phone_text:
+      type: string
+      label: 'Phone text'
+    menu_name:
+      type: string
+      label: 'Primary menu machine name'

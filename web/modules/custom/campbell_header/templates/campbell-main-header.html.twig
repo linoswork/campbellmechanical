@@ -1,53 +1,27 @@
-{# Sticky white header that stays after the orange top bar scrolls away #}
-
-<header id="cm-header"
-  class="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-b border-gray-100">
-  <div class="container mx-auto px-4 h-20 flex items-center justify-between gap-4">
-
-    {# LEFT: Logo — update path if needed #}
-    <a href="{{ path('<front>') }}" class="flex items-center gap-2 shrink-0">
-      <span class="sr-only">Campbell Mechanical</span>
-      <img src="/themes/custom/campbell/logo.svg" alt="" class="h-10 w-auto" />
-    </a>
-
-    {# CENTER: Main nav (tablet/desktop) #}
-    <nav class="block">
-      {{ menu }} {# <- render array; Drupal/Twig renders it #}
-    </nav>
-
-    {# RIGHT: Phone + CTA (tablet/desktop) #}
-    <div class="hidden md:flex items-center gap-4">
-      {% if phone %}
-        <a href="tel:{{ phone|replace({' ': '', '.': '', '-': ''}) }}"
-           class="text-sm font-medium hover:text-orange-600">{{ phone }}</a>
+<header class="cm-header" role="banner">
+  <div class="cm-wrap cm-header__grid">
+    <!-- Left: Logo -->
+    <div class="cm-header__logo">
+      {% if logo.src %}
+        <a href="{{ path('<front>') }}" aria-label="{{ site_name ?? 'Home' }}">
+          <img src="{{ logo.src }}" alt="{{ logo.alt|default('') }}">
+        </a>
       {% endif %}
-      <a href="{{ cta_url }}"
-         class="inline-flex items-center rounded-xl bg-orange-600 text-white px-4 py-2 text-sm font-semibold hover:bg-orange-700">
-        {{ cta_text }}
-      </a>
     </div>
 
-    {# Burger (phones only) #}
-    <button id="cm-nav-toggle"
-      class="md:hidden inline-flex items-center justify-center size-10 rounded-2xl border border-zinc-300"
-      aria-controls="cm-mobile-nav" aria-expanded="false">
-      <span class="sr-only">Toggle menu</span>☰
-    </button>
-  </div>
+    <!-- Center: Primary menu -->
+    <nav class="cm-header__nav" role="navigation" aria-label="Primary">
+      {{ primary_menu }}
+    </nav>
 
-  {# Mobile drawer: menu + phone/cta #}
-  <div id="cm-mobile-nav" class="hidden md:hidden border-t border-gray-100">
-    <div class="container mx-auto px-4 py-3 space-y-3">
-      {{ menu }}
-      <div class="flex items-center justify-between pt-2">
-        {% if phone %}
-          <a href="tel:{{ phone|replace({' ': '', '.': '', '-': ''}) }}" class="font-medium">{{ phone }}</a>
-        {% endif %}
-        <a href="{{ cta_url }}"
-           class="inline-flex items-center rounded-xl bg-orange-600 text-white px-3 py-2 text-sm font-semibold">
-          {{ cta_text }}
-        </a>
-      </div>
+    <!-- Right: Phone + CTA -->
+    <div class="cm-header__cta">
+      {% if phone.show and phone.href %}
+        <a class="cm-header__phone" href="{{ phone.href }}">{{ phone.text }}</a>
+      {% endif %}
+      <a class="btn-quote" href="{{ cta.url }}"{% if cta.new_tab %} target="_blank" rel="noopener noreferrer"{% endif %}>
+        {{ cta.label }}
+      </a>
     </div>
   </div>
 </header>
