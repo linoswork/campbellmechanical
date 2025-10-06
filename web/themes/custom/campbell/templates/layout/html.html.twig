@@ -34,11 +34,20 @@
 <!DOCTYPE html>
 <html{{ html_attributes }}>
   <head>
-    <head-placeholder token="{{ placeholder_token }}">
-    <title>{{ head_title|safe_join(' | ') }}</title>
-    <css-placeholder token="{{ placeholder_token }}">
-    <js-placeholder token="{{ placeholder_token }}">
-  </head>
+  <head-placeholder token="{{ placeholder_token }}">
+  <title>{{ head_title|safe_join(' | ') }}</title>
+
+  {# Favicons #}
+  <link rel="icon" type="image/x-icon" href="{{ base_path }}themes/custom/campbell/assets/icons/favicon.ico?v=1">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ base_path }}themes/custom/campbell/assets/icons/favicon-32x32.png?v=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ base_path }}themes/custom/campbell/assets/icons/favicon-16x16.png?v=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}themes/custom/campbell/assets/icons/favicon-180x180.png?v=1">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ base_path }}themes/custom/campbell/assets/icons/favicon-192x192.png?v=1">
+
+  <css-placeholder token="{{ placeholder_token }}">
+  <js-placeholder token="{{ placeholder_token }}">
+</head>
+
   <body{{ attributes.addClass(body_classes) }}>
     {#
       Keyboard navigation/accessibility link to main content section in

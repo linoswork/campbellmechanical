@@ -1,0 +1,15 @@
+uuid: 5e9dfd9f-b00b-4ec3-871b-8d1b3155b837
+langcode: en
+status: true
+dependencies: {  }
+name: hero_768
+label: hero_768
+effects:
+  e8b4016c-9331-4c6b-9e49-77d601764bb2:
+    uuid: e8b4016c-9331-4c6b-9e49-77d601764bb2
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 768
+      height: 432
+      anchor: center-center

@@ -1,0 +1,30 @@
+/* Loaded only on the front page via page--front.html.twig */
+
+/* Subtle infinite grid using pure CSS (no image asset) */
+html, body {
+  min-height: 100%;
+}
+
+body {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(to right, rgba(17, 24, 39, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17, 24, 39, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px; /* adjust spacing to taste */
+}
+
+/* Center the landing content */
+.landing-wrap {
+  min-height: calc(70vh - var(--cm-header-height, 0px) - var(--cm-footer-height, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+}
+
+/* A simple container we’ll replace next step */
+.landing-slot {
+  width: 100%;
+  max-width: 64rem; /* ~1024px */
+  text-align: center;
+}

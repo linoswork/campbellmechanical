@@ -1,0 +1,19 @@
+uuid: c13410b3-a215-445f-b90f-6454114b9bbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_headline
+    - node.type.hero_slide
+id: node.hero_slide.field_headline
+field_name: field_headline
+entity_type: node
+bundle: hero_slide
+label: Headline
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

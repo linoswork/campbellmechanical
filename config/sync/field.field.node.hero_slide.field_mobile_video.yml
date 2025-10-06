@@ -1,0 +1,29 @@
+uuid: 7e51dbd1-762d-439c-bf8b-596011940ee8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mobile_video
+    - media.type.hero_video
+    - node.type.hero_slide
+id: node.hero_slide.field_mobile_video
+field_name: field_mobile_video
+entity_type: node
+bundle: hero_slide
+label: 'Mobile VIdeo'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      hero_video: hero_video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

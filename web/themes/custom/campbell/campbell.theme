@@ -10,12 +10,49 @@
  */
 function campbell_preprocess_image_widget(array &$variables) {
   $data = &$variables['data'];
-
-  // This prevents image widget templates from rendering preview container HTML
-  // to users that do not have permission to access these previews.
-  // @todo revisit in https://drupal.org/node/953034
-  // @todo revisit in https://drupal.org/node/3114318
   if (isset($data['preview']['#access']) && $data['preview']['#access'] === FALSE) {
     unset($data['preview']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function campbell_preprocess_views_view(array &$variables) {
+  if ($variables['view']->id() === 'hero_slides' && $variables['view']->current_display === 'block_1') {
+    $variables['#attached']['library'][] = 'campbell/cm_hero';
+  }
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ * Remove the core favicon and attach our theme favicons.
+ */
+function campbell_page_attachments_alter(array &$attachments) {
+  // 1) Remove any /core/misc/favicon.ico links Drupal adds.
+  if (!empty($attachments['#attached']['html_head_link'])) {
+    foreach ($attachments['#attached']['html_head_link'] as $k => $item) {
+      $href = $item[0]['href'] ?? '';
+      if (is_string($href) && str_contains($href, '/core/misc/favicon.ico')) {
+        unset($attachments['#attached']['html_head_link'][$k]);
+      }
+    }
+  }
+
+  // 2) Build the base path to this theme using the extension.list.theme service.
+  $theme_path = \Drupal::service('extension.list.theme')->getPath('campbell');
+  $base = base_path() . $theme_path . '/assets/icons/';
+  $v = '10'; // bump to bust cache
+
+  // 3) Attach our favicons.
+  $links = [
+    ['rel' => 'icon', 'type' => 'image/x-icon', 'href' => $base . "favicon.ico?v=$v"],
+    ['rel' => 'icon', 'type' => 'image/png', 'sizes' => '32x32', 'href' => $base . "favicon-32x32.png?v=$v"],
+    ['rel' => 'icon', 'type' => 'image/png', 'sizes' => '16x16', 'href' => $base . "favicon-16x16.png?v=$v"],
+    ['rel' => 'apple-touch-icon', 'sizes' => '180x180', 'href' => $base . "favicon-180x180.png?v=$v"],
+    ['rel' => 'icon', 'type' => 'image/png', 'sizes' => '192x192', 'href' => $base . "favicon-192x192.png?v=$v"],
+  ];
+  foreach ($links as $link) {
+    $attachments['#attached']['html_head_link'][] = [$link, TRUE];
   }
 }

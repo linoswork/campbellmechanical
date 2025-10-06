@@ -1,0 +1,69 @@
+{# Core-only. Fixed-height stage; media absolutely positioned; overlay on top. #}
+
+<div class="cm-hero-slider swiper swiper-container">
+  <div class="swiper-wrapper">
+    {% for row in rows %}
+      {% set slide = row.content['#row']._entity %}
+
+      {# TEXT / CTA (adjust field machine names if yours differ) #}
+      {% set h   = slide.field_headline.value ?? '' %}
+      {% set sub = slide.field_subheader.value ?? '' %}
+      {% set cta_item  = slide.field_cta_link.0 ?? null %}
+      {% set cta_href  = cta_item ? (cta_item.uri ?? '') : '' %}
+      {% set cta_title = cta_item and cta_item.title ? cta_item.title : 'Learn more' %}
+
+      {# FALLBACK IMAGE (for mobile + poster) #}
+      {% set fallback_media = slide.field_fallback_image.entity ?? null %}
+      {% set image_item = fallback_media ? fallback_media.field_media_image.0 : null %}
+      {% set image_file = image_item ? image_item.entity : null %}
+      {% set image_uri  = image_file ? image_file.uri.value : '' %}
+      {% set image_alt  = image_item ? (image_item.alt ?? '') : '' %}
+      {% set poster_url = image_uri ? file_url(image_uri) : '' %}
+
+      {# OPTIONAL VIDEOS #}
+      {% set mvid = slide.field_video_mobile.entity   ?? null %}
+      {% set dvid = slide.field_video_desktop.entity ?? null %}
+      {% set mobile_file  = mvid ? mvid.field_media_video_file.entity   : null %}
+      {% set desktop_file = dvid ? dvid.field_media_video_file.entity   : null %}
+      {% set mobile_mp4   = mobile_file  ? mobile_file.createFileUrl()  : '' %}
+      {% set desktop_mp4  = desktop_file ? desktop_file.createFileUrl() : '' %}
+      {% set has_video    = (mobile_mp4 or desktop_mp4) %}
+
+      {# Each slide is a fixed-height stage. Everything inside is absolute. #}
+      <div class="swiper-slide cm-hero-slide relative overflow-hidden">
+        {# Stage height (tune these): #}
+        <div class="cm-hero-stage relative w-full min-h-[55vh] md:min-h-[60vh] lg:min-h-[70vh]">
+
+          {% if has_video %}
+            <video class="cm-hero-video absolute inset-0 w-full h-full object-cover"
+                   autoplay muted loop playsinline preload="metadata"
+                   {% if poster_url %}poster="{{ poster_url }}"{% endif %}>
+              {% if mobile_mp4 %}<source src="{{ mobile_mp4 }}" type="video/mp4" media="(max-width: 768px)">{% endif %}
+              {% if desktop_mp4 %}<source src="{{ desktop_mp4 }}" type="video/mp4">{% endif %}
+            </video>
+          {% endif %}
+
+          {% if image_uri %}
+            <img src="{{ file_url(image_uri) }}"
+                 alt="{{ image_alt|e }}"
+                 class="cm-hero-fallback absolute inset-0 w-full h-full object-cover" />
+          {% endif %}
+
+          {# Overlay ALWAYS inside the stage #}
+          <div class="cm-hero-overlay absolute inset-0 z-10 grid place-content-center text-center p-6 md:p-10">
+            {% if h %}<h1 class="cm-hero-headline text-white text-3xl md:text-5xl font-semibold leading-tight">{{ h }}</h1>{% endif %}
+            {% if sub %}<p class="cm-hero-subhead text-white/90 mt-4 max-w-3xl mx-auto">{{ sub|raw }}</p>{% endif %}
+            {% if cta_href %}
+              <a class="cm-hero-cta inline-block mt-6 px-5 py-3 rounded-xl bg-orange-500 text-white hover:bg-orange-600 transition"
+                 href="{{ cta_href }}" aria-label="{{ cta_title|e }}">{{ cta_title }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev" aria-label="Previous slide"></div>
+  <div class="swiper-button-next" aria-label="Next slide"></div>
+</div>

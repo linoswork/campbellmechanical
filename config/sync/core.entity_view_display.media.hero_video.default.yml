@@ -1,0 +1,27 @@
+uuid: abdad912-79f0-4e56-a064-707e1f734232
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.hero_video.field_media_video_file
+    - media.type.hero_video
+  module:
+    - file
+id: media.hero_video.default
+targetEntityType: media
+bundle: hero_video
+mode: default
+content:
+  field_media_video_file:
+    type: file_default
+    label: visually_hidden
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true

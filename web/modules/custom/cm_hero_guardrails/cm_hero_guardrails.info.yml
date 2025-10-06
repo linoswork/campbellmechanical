@@ -1,0 +1,7 @@
+name: 'CM Hero Guardrails'
+type: module
+description: 'Validates Hero Video media (size, duration, etc.).'
+core_version_requirement: ^10
+package: 'Campbell'
+dependencies:
+  - drupal:media

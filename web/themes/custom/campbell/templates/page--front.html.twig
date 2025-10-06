@@ -1,0 +1,82 @@
+{# Front page only. Keeps your existing regions intact. #}
+{{ attach_library('campbell/landing') }}
+<!-- FRONT TEMPLATE ACTIVE -->
+{% if page.pre_header %}
+  <div class="pre-header">
+    {{ page.pre_header }}
+  </div>
+{% endif %}
+
+{% if page.header %}
+  <header role="banner">
+    {{ page.header }}
+  </header>
+{% endif %}
+
+<main id="main" role="main">
+  <div class="landing-wrap">
+    {# We'll replace this in Step 2 with the real markup (logo, H1, CTAs, tiles) #}
+    {# --- Landing Content --- #}
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      {# Logo #}
+      <img
+        src="/themes/custom/campbell/logo.webp"
+        alt="Campbell Mechanical"
+        class="mx-auto h-40 w-auto mb-8"
+        loading="eager"
+        decoding="async"
+      />
+      {# Headline #}
+      <h1 class="text-center text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-800 mb-4">
+        Heating • Cooling • Refrigeration
+      </h1>
+
+      {# Subtext #}
+      <p class="mx-auto max-w-2xl text-center text-slate-600 mb-8">
+        We’re building a better experience. In the meantime, we’re fully operational—reach out for installation, service, and maintenance.
+      </p>
+
+      {# CTAs #}
+      <div class="flex items-center justify-center gap-3 mb-10">
+        <a
+          href="tel:16192897109"
+          class="inline-flex items-center rounded-xl bg-slate-900 px-5 py-3 text-white font-medium shadow-sm hover:bg-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-500"
+          aria-label="Call Campbell Mechanical"
+        >
+          Call now
+        </a>
+        <a
+          href="mailto:info@campbellhvacr.com?subject=Service%20Request"
+          class="inline-flex items-center rounded-xl border border-slate-300 px-5 py-3 text-slate-800 font-medium hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-500"
+          aria-label="Email Campbell Mechanical for service"
+        >
+          Email
+        </a>
+      </div>
+      {# Info tiles #}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="rounded-2xl border border-slate-200 bg-white/70 p-5 text-center">
+          <div class="text-[11px] uppercase tracking-wide text-slate-500 mb-1">Hours</div>
+          <div class="text-slate-800">Mon–Fri 8:00–6:00 · Sat by appt.</div>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 bg-white/70 p-5 text-center">
+          <div class="text-[11px] uppercase tracking-wide text-slate-500 mb-1">Service Area</div>
+          <div class="text-slate-800">Greater San Diego County</div>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 bg-white/70 p-5 text-center">
+          <div class="text-[11px] uppercase tracking-wide text-slate-500 mb-1">License</div>
+          <div class="text-slate-800">CSLB #1141925</div>
+        </div>
+      </div>
+    </div>
+    {# --- /Landing Content --- #}
+  </div>
+</main>
+
+{% if page.footer %}
+  <footer role="contentinfo">
+    {{ page.footer }}
+  </footer>
+{% endif %}

@@ -1,0 +1,59 @@
+<?php
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityStorageException;
+use Drupal\file\Entity\File;
+use Drupal\media\Entity\Media;
+
+/**
+ * Enforce size/duration constraints on Hero Video media.
+ *
+ * This runs before the entity is saved; throw to block the save.
+ */
+function cm_hero_guardrails_entity_presave(EntityInterface $entity) {
+  // Only act on media of bundle 'hero_video'.
+  if (!($entity instanceof Media) || $entity->bundle() !== 'hero_video') {
+    return;
+  }
+
+  // Adjust if your file field has a different machine name.
+  $field_name = 'field_media_video_file';
+  if (!$entity->hasField($field_name) || $entity->get($field_name)->isEmpty()) {
+    // No file yet; nothing to validate.
+    return;
+  }
+
+  $fid = $entity->get($field_name)->target_id;
+  $file = $fid ? File::load($fid) : NULL;
+  if (!$file) {
+    return;
+  }
+
+  // === Limits (tune to taste) ===
+  $MAX_BYTES   = 15 * 1024 * 1024; // 15 MB
+  $MAX_SECONDS = 20;               // 20 seconds
+
+  // 1) Size guardrail (also set in field UI).
+  if ($file->getSize() > $MAX_BYTES) {
+    throw new EntityStorageException('Hero Video exceeds 15MB limit.');
+  }
+
+  // 2) Duration guardrail using getID3 (if available).
+  // Composer package: james-heinrich/getid3
+  if (class_exists('\getID3')) {
+    /** @var \Drupal\Core\File\FileSystemInterface $fs */
+    $fs = \Drupal::service('file_system');
+    $realpath = $fs->realpath($file->getFileUri());
+
+    if ($realpath && is_readable($realpath)) {
+      $getID3 = new \getID3();
+      $info = $getID3->analyze($realpath);
+      // Some files may not report duration; guard access carefully.
+      $seconds = isset($info['playtime_seconds']) ? (float) $info['playtime_seconds'] : 0.0;
+
+      if ($seconds > 0 && $seconds > $MAX_SECONDS) {
+        throw new EntityStorageException('Hero Video duration must be 20 seconds or less.');
+      }
+    }
+  }
+}

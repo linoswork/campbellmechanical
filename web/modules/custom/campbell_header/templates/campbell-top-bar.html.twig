@@ -2,20 +2,22 @@
 <div id="cm-topbar" class="w-full bg-orange-600 text-white text-sm transition-transform duration-300 will-change-transform">
   <div class="container mx-auto px-4 py-2 flex items-center justify-between gap-4">
     <div class="flex flex-wrap items-center gap-4">
-      {% if hours %}<span class="opacity-90">{{ hours }}</span>{% endif %}
-      {% if email %}<a class="underline hover:no-underline" href="mailto:{{ email }}">{{ email }}</a>{% endif %}
-      {% if phone %}
-        <a class="font-semibold" href="tel:{{ phone|replace({' ': '', '.': '', '-': ''}) }}">{{ phone }}</a>
+      {% if cta_text %}
+        <div
+        class="flex items-center rounded-xl ring-1 ring-white/30 px-3 py-1 [line-height:1]"
+  role="status" aria-live="polite"
+      >
+        <strong class="[line-height:1]">{{ cta_text }}</strong>
+      </div>
       {% endif %}
     </div>
 
     <div class="flex items-center gap-3">
-      {% if cta_text %}
-        <a href="{{ cta_url ?: '/contact' }}"
-           class="inline-flex items-center rounded-xl bg-white/10 px-3 py-1 hover:bg-white/20">
-          {{ cta_text }}
-        </a>
+      {% if hours %}<span class="opacity-90">{{ hours }}</span>{% endif %}
+      {% if phone %}
+        <a class="font-semibold" href="tel:{{ phone|replace({' ': '', '.': '', '-': ''}) }}">Call: {{ phone }}</a>
       {% endif %}
+      {% if email %}<a class="underline hover:no-underline" href="mailto:{{ email }}">{{ email }}</a>{% endif %}
 
       {# Social icons (inline SVG, color = currentColor) #}
       {% if facebook %}

@@ -1,0 +1,28 @@
+uuid: 38a7c431-83cc-4643-9b68-bfb7140dff8e
+langcode: en
+status: false
+dependencies:
+  module:
+    - campbell_header
+  theme:
+    - campbell
+id: campbell_campbellmainheadersticky
+theme: campbell
+region: header
+weight: 0
+provider: null
+plugin: campbell_main_header
+settings:
+  logo_src: /themes/custom/campbell/logo.webp
+  logo_alt: 'Campbell Mechanical'
+  cta_label: 'Get a Quote'
+  cta_path: /get-a-quote
+  cta_new_tab: false
+  show_phone: true
+  phone_text: '+1 (619) 731-1177'
+  menu_name: main
+  id: campbell_main_header
+  label: 'Campbell Main Header (Sticky)'
+  label_display: 0
+  provider: campbell_header
+visibility: {  }

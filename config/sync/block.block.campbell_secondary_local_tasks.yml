@@ -9,7 +9,7 @@ _core:
 id: campbell_secondary_local_tasks
 theme: campbell
 region: pre_header
-weight: -2
+weight: 0
 provider: null
 plugin: local_tasks_block
 settings:

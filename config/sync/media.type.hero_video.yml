@@ -1,0 +1,13 @@
+uuid: d0c9e596-6c83-460e-af5e-962c6992ebef
+langcode: en
+status: true
+dependencies: {  }
+id: hero_video
+label: 'Hero Video'
+description: 'Change the hero video.'
+source: file
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_video_file
+field_map: {  }

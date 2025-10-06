@@ -106,4 +106,21 @@ user:
 global:
   css:
     theme:
-      assets/dist/styles.css: {}
+      assets/dist/styles.css: { weight: 100 }
+swiper:
+  css:
+    theme:
+      https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css: { type: external }
+  js:
+    https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js: { type: external }
+
+cm_hero:
+  js:
+    js/cm-hero-swiper.js: {}
+  dependencies:
+    - core/drupal
+    - campbell/swiper
+landing:
+  css:
+    theme:
+      assets/css/landing.css: { weight: 100 }

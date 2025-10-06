@@ -5,7 +5,6 @@ version: 1.0.0
 libraries:
   - campbell/base
   - campbell/messages
-  - core/normalize
   - campbell/global
 libraries-extend:
   user/drupal.user:
@@ -26,3 +25,5 @@ regions:
   header: 'Header'
   content: 'Content'
   footer: 'Footer'
+libraries-override:
+  core/drupal.favicon: false

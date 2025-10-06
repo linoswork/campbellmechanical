@@ -1,0 +1,20 @@
+uuid: 3cb88c47-49f4-4b00-a068-c4517c3506b2
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+    - node
+id: node.field_desktop_video
+field_name: field_desktop_video
+entity_type: node
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

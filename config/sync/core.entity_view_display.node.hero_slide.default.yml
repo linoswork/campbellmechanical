@@ -1,0 +1,29 @@
+uuid: 49ab290f-d24f-4d2f-9fcf-8be38f13eed7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.hero_slide.field_cta_link
+    - field.field.node.hero_slide.field_desktop_video
+    - field.field.node.hero_slide.field_fallback_image
+    - field.field.node.hero_slide.field_headline
+    - field.field.node.hero_slide.field_mobile_video
+    - field.field.node.hero_slide.field_slide_order
+    - field.field.node.hero_slide.field_subheader
+    - node.type.hero_slide
+  module:
+    - user
+id: node.hero_slide.default
+targetEntityType: node
+bundle: hero_slide
+mode: default
+content: {  }
+hidden:
+  field_cta_link: true
+  field_desktop_video: true
+  field_fallback_image: true
+  field_headline: true
+  field_mobile_video: true
+  field_slide_order: true
+  field_subheader: true
+  links: true

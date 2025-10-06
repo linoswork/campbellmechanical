@@ -1,0 +1,15 @@
+uuid: c490b238-a368-4cce-bfa4-3b26d23bc8d6
+langcode: en
+status: true
+dependencies: {  }
+name: hero_1920
+label: hero_1920
+effects:
+  a3552e14-7150-455d-9a36-12c5b631d752:
+    uuid: a3552e14-7150-455d-9a36-12c5b631d752
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1920
+      height: 1080
+      anchor: center-center

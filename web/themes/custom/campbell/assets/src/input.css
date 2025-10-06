@@ -34,4 +34,37 @@
   .btn-quote {
     @apply inline-block px-4 py-2.5 rounded-lg bg-[#ef520f] text-white font-bold no-underline hover:brightness-95 transition;
   }
+  .cm-hero-video { @apply hidden lg:block w-full h-auto; }  /* video only on lg+ */
+  .cm-hero-fallback { @apply block lg:hidden; }             /* image on mobile/tablet */
+  .image-only .cm-hero-fallback { @apply block; }           /* ensure image shows if no video */
+  .image-only .cm-hero-video { @apply hidden; }             /* belt & suspenders */
+
+   /* Container must have explicit height for Swiper's height:100% logic */
+  .cm-hero-slider { @apply relative w-full h-[60vh] lg:h-[70vh] overflow-hidden; }
+
+  /* Children match that height */
+  .cm-hero-slider .swiper-wrapper { height: 100%; }
+  .cm-hero-slider .swiper-slide   { height: 100%; }
+
+  /* REMOVE the pre-init hiding; let Swiper handle visibility */
+  /* .cm-hero-slider .swiper-slide { @apply hidden; } */
+  /* .cm-hero-slider .swiper-slide.swiper-slide-active { @apply block; } */
+
+  /* Stage fills the slide; media absolutely covers */
+  .cm-hero-stage    { @apply relative w-full h-full; }
+  .cm-hero-video,
+  .cm-hero-fallback { @apply absolute inset-0 w-full h-full object-cover block; }
+
+  /* Overlay */
+  .cm-hero-overlay  { @apply absolute inset-0 z-10 grid place-content-center text-center p-6 md:p-10; }
+
+  /* Always show the fallback image */
+  .cm-hero-fallback { @apply block; }
+
+  /* Video is hidden by default; show it on lg only when we explicitly flag it */
+  .cm-hero-video    { @apply hidden; }
+  @screen lg {
+    .has-video .cm-hero-video    { @apply block; }  /* lg: show video when present */
+    .has-video .cm-hero-fallback { @apply hidden; } /* lg: hide image only if video exists */
+  }
 }

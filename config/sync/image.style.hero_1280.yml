@@ -1,0 +1,15 @@
+uuid: dc7b2d30-4336-4802-bdce-66f4dd773f00
+langcode: en
+status: true
+dependencies: {  }
+name: hero_1280
+label: hero_1280
+effects:
+  935a5b17-e016-43fc-9dca-a8775db28204:
+    uuid: 935a5b17-e016-43fc-9dca-a8775db28204
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1280
+      height: 720
+      anchor: center-center

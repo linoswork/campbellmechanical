@@ -1,0 +1,18 @@
+uuid: 53e5b88c-5075-42a8-abe2-9e3992672be1
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Hero Slide'
+type: hero_slide
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false
