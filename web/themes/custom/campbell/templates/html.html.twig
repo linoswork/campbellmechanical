@@ -1,0 +1,71 @@
+{# themes/custom/campbell/templates/html.html.twig #}
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    {# Core/head placeholders (keep these) #}
+    <head-placeholder token="{{ placeholder_token }}">
+
+    {# We deliberately omit Drupal's default <title> so we can control it #}
+
+    {# ========= One-off SEO for the FRONT PAGE ONLY ========= #}
+    {% if url('<front>') == url('<current>') %}
+      <title>Campbell Mechanical | HVAC & Refrigeration Experts</title>
+      <meta name="description" content="Serving San Diego County for over 25 years in HVAC and refrigeration. Reliable installation, service, and maintenance.">
+
+      {# Canonical helps avoid duplicate URLs like / and /index.php #}
+      <link rel="canonical" href="{{ url('<front>')|render }}">
+
+      {# Open Graph (link preview in texts, email, Slack, etc.) #}
+      <meta property="og:title" content="Campbell Mechanical | HVAC & Refrigeration Experts">
+      <meta property="og:description" content="Serving San Diego County for over 25 years in HVAC and refrigeration.">
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="{{ url('<front>')|render }}">
+      {# Use an absolute URL for images. Replace with your actual file path. #}
+      <meta property="og:image" content="https://campbellhvacr.com/themes/custom/campbell/images/og.jpg">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="630">
+
+      {# Optional: Twitter Card (harmless even without a Twitter account) #}
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="Campbell Mechanical | HVAC & Refrigeration Experts">
+      <meta name="twitter:description" content="Serving San Diego County for over 25 years in HVAC and refrigeration.">
+      <meta name="twitter:image" content="https://campbellhvacr.com/themes/custom/campbell/images/og.jpg">
+    {% else %}
+      {# Non-front pages keep Drupal's automatic title #}
+      <title>{{ head_title|safe_join(' | ') }}</title>
+    {% endif %}
+
+    {# Favicons / theme color (safe to keep site-wide) #}
+    <link rel="icon" href="/themes/custom/campbell/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/themes/custom/campbell/apple-touch-icon.png">
+    <meta name="theme-color" content="#0f172a">
+
+    {# ========= Optional, free analytics (enable when ready) ========= #}
+    {# --- Google Analytics 4 (FREE). Replace G-XXXXXXXXXX and uncomment. --- #}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KWVZ7JSYM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-1KWVZ7JSYM');
+    </script>
+
+    {# CSS/JS placeholders (keep) #}
+    <css-placeholder token="{{ placeholder_token }}">
+    <js-placeholder token="{{ placeholder_token }}">
+  </head>
+
+  <body{{ attributes }}>
+    <a href="#main-content" class="visually-hidden focusable skip-link">
+      {{ 'Skip to main content'|t }}
+    </a>
+
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+
+    <js-bottom-placeholder token="{{ placeholder_token }}">
+  </body>
+</html>
