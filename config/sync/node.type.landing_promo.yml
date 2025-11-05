@@ -1,0 +1,18 @@
+uuid: 9d060b69-b104-4741-8d9d-b18d63b22b94
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Landing/Promo
+type: landing_promo
+description: 'Landing page for different events. This was used for the Coming soon page.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

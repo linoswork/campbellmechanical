@@ -1,0 +1,32 @@
+uuid: 9ce23f72-0e12-4670-bf7b-800efc9366f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.landing_promo.field_info_label
+    - field.field.node.landing_promo.field_info_value
+    - field.field.node.landing_promo.field_landing_ctas
+    - field.field.node.landing_promo.field_landing_headline
+    - field.field.node.landing_promo.field_main_image
+    - field.field.node.landing_promo.field_subheadline
+    - node.type.landing_promo
+  module:
+    - user
+id: node.landing_promo.teaser
+targetEntityType: node
+bundle: landing_promo
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_info_label: true
+  field_info_value: true
+  field_landing_ctas: true
+  field_landing_headline: true
+  field_main_image: true
+  field_subheadline: true

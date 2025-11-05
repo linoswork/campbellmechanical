@@ -1,0 +1,26 @@
+uuid: de60af16-c877-4a00-bfd0-21729f551892
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_info_value
+    - filter.format.full_html
+    - filter.format.plain_text
+    - node.type.landing_promo
+  module:
+    - text
+id: node.landing_promo.field_info_value
+field_name: field_info_value
+entity_type: node
+bundle: landing_promo
+label: 'Info Value'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+    - plain_text
+field_type: text_long

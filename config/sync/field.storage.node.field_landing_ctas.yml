@@ -1,0 +1,19 @@
+uuid: 9f5d73a6-de24-45f0-b282-face348acd62
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - node
+id: node.field_landing_ctas
+field_name: field_landing_ctas
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
