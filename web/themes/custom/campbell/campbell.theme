@@ -56,3 +56,38 @@ function campbell_page_attachments_alter(array &$attachments) {
     $attachments['#attached']['html_head_link'][] = [$link, TRUE];
   }
 }
+
+/**
+ * Implements hook_preprocess_node().
+ * Prepares paired info tiles for Landing/Promo nodes.
+ */
+function campbell_preprocess_node(array &$variables) {
+  $node = $variables['node'] ?? NULL;
+  if (!$node instanceof \Drupal\node\NodeInterface || $node->bundle() !== 'landing_promo') {
+    return;
+  }
+
+  $labels = $node->get('field_info_label');
+  $values = $node->get('field_info_value');
+  $count  = min($labels->count(), $values->count());
+
+  $tiles = [];
+  for ($i = 0; $i < $count; $i++) {
+    $tiles[] = [
+      'label' => $labels->get($i)->value,
+      // Use processed value so WYSIWYG formatting/links render.
+      'value' => $values->get($i)->view(['type' => 'text_default']),
+    ];
+  }
+
+  // Convert render arrays to strings once.
+  $renderer = \Drupal::service('renderer');
+  foreach ($tiles as &$t) {
+    if (is_array($t['value'])) {
+      $t['value'] = $renderer->renderRoot($t['value']);
+    }
+  }
+
+  $variables['info_tiles'] = $tiles;
+}
+

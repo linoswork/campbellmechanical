@@ -1,0 +1,88 @@
+{#
+  Node template for Landing/Promo pages (no hero).
+  Renders: main image, headline, subheadline, CTAs, and Info Tiles cards.
+  Uses Option B (preprocess) if available for info tiles; otherwise falls back to Twig pairing.
+#}
+
+{{ attach_library('campbell/landing') }}
+
+<article{{ attributes.addClass('landing-wrap') }}>
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+
+    {# --- Main image (optional) --- #}
+    {# If you want Drupal to handle responsive images/styles, let it render the field as a render array. #}
+    {% if content.field_main_image is defined and content.field_main_image %}
+      <div class="mb-8 text-center">
+        {{ content.field_main_image }}
+      </div>
+    {% endif %}
+
+    {# --- Headline --- #}
+    {% if node.field_landing_headline.value %}
+      <h1 class="text-center text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-800 mb-4">
+        {{ node.field_landing_headline.value }}
+      </h1>
+    {% endif %}
+
+    {# --- Subheadline / body copy --- #}
+    {% if node.field_subheadline.processed %}
+      <div class="mx-auto max-w-2xl text-center text-slate-600 mb-8">
+        {{ node.field_subheadline.processed|raw }}
+      </div>
+    {% endif %}
+
+    {# --- CTAs (optional, unlimited) --- #}
+    {% if node.field_landing_ctas is defined and node.field_landing_ctas|length %}
+      <div class="flex items-center justify-center gap-3 mb-10">
+        {% for item in node.field_landing_ctas %}
+          {% set href = item.uri %}
+          {% set label = item.title ?: 'Learn more' %}
+          <a
+            href="{{ href }}"
+            class="inline-flex items-center rounded-xl border border-slate-300 px-5 py-3 text-slate-800 font-medium hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-500"
+          >
+            {{ label }}
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {# --- Info Tiles (cards) --- #}
+    {# Preferred: use $variables.info_tiles built in campbell_preprocess_node(). #}
+    {% set tiles = info_tiles is defined and info_tiles ? info_tiles : [] %}
+
+    {# Fallback: if preprocess is not in place, pair label[i] and value[i] here. #}
+    {% if tiles is empty and node.field_info_label is defined and node.field_info_value is defined %}
+      {% set labels = node.field_info_label %}
+      {% set values = node.field_info_value %}
+      {% set count = [labels|length, values|length]|min %}
+      {% if count > 0 %}
+        {% set tiles = [] %}
+        {% for i in 0..count-1 %}
+          {% set tiles = tiles|merge([{
+            'label': labels[i].value,
+            'value': values[i].processed
+          }]) %}
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+
+    {% if tiles and tiles|length %}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {% for tile in tiles %}
+          <div class="rounded-2xl border border-slate-200 bg-white/70 p-5 text-center">
+            {% if tile.label %}
+              <div class="text-[11px] uppercase tracking-wide text-slate-500 mb-1">
+                {{ tile.label }}
+              </div>
+            {% endif %}
+            {% if tile.value %}
+              <div class="text-slate-800">{{ tile.value|raw }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  </div>
+</article>

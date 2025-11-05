@@ -8,6 +8,33 @@
 /* Scan MODULE templates (correct path from assets/src → /web/modules/custom) */
 @source "../../../../../modules/custom/**/templates/**/*.twig";
 
+@layer base {
+  /* Overlay sits above most things, but under raised content */
+  body::before {
+    @apply fixed inset-0 pointer-events-none;
+    content: "";
+    z-index: 200; /* was 0 -> bump up so it’s visible */
+
+    /* Tunables */
+    /* --grid-gap: 56px;
+    --grid-color: rgba(8, 28, 48, 0.06);
+    --grid-bold-gap: calc(var(--grid-gap) * 4);
+    --grid-bold-color: rgba(8, 28, 48, 0.08);
+    --veil: rgba(255,255,255,0.85); */
+
+    /* background-image:
+      linear-gradient(var(--veil), var(--veil)),
+      repeating-linear-gradient(to right,
+        var(--grid-color) 0 1px, transparent 1px var(--grid-gap)),
+      repeating-linear-gradient(to bottom,
+        var(--grid-color) 0 1px, transparent 1px var(--grid-gap)),
+      repeating-linear-gradient(to right,
+        var(--grid-bold-color) 0 1px, transparent 1px var(--grid-bold-gap)),
+      repeating-linear-gradient(to bottom,
+        var(--grid-bold-color) 0 1px, transparent 1px var(--grid-bold-gap)); */
+  }
+}
+
 /* Campbell header (Tailwind) */
 @layer components {
   .cm-header { @apply sticky top-0 z-50 bg-white border-b border-black/10; }
@@ -20,7 +47,7 @@
     grid-template-columns: auto 1fr auto;
   }
 
-  .cm-header__logo img { @apply h-10 w-auto block; }
+  .cm-header__logo img { @apply h-20 w-auto block; }
 
   /* centered nav */
   .cm-header__nav { @apply justify-self-center max-[980px]:hidden; }
@@ -66,5 +93,28 @@
   @screen lg {
     .has-video .cm-hero-video    { @apply block; }  /* lg: show video when present */
     .has-video .cm-hero-fallback { @apply hidden; } /* lg: hide image only if video exists */
+  } .section-grid::before {
+    content: "";
+    @apply absolute inset-0 pointer-events-none;
+    z-index: 10;
+
+    /* Adjust these two lines to “zoom out” or “in” */
+    --grid-gap: 40px; /* smaller = more cells visible */
+    --grid-bold-gap: calc(var(--grid-gap) * 4);
+
+    --grid-color: rgba(8, 28, 48, 0.05);
+    --grid-bold-color: rgba(8, 28, 48, 0.01);
+
+    background-image:
+      repeating-linear-gradient(to right, var(--grid-color) 0 1px, transparent 1px var(--grid-gap)),
+      repeating-linear-gradient(to bottom, var(--grid-color) 0 1px, transparent 1px var(--grid-gap)),
+      repeating-linear-gradient(to right, var(--grid-bold-color) 0 1px, transparent 1px var(--grid-bold-gap)),
+      repeating-linear-gradient(to bottom, var(--grid-bold-color) 0 1px, transparent 1px var(--grid-bold-gap));
+  }
+  .cm-grid-overlay {
+    background-image:
+    linear-gradient(to right, rgba(0,0,0,.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,.05) 1px, transparent 1px);
+    background-size: 40px 40px; /* adjust to match your mockup */
   }
 }

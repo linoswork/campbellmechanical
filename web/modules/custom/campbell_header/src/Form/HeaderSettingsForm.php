@@ -22,7 +22,7 @@ class HeaderSettingsForm extends ConfigFormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Phone'),
       '#default_value' => $c->get('phone') ?? '',
-      '#required' => TRUE,
+      '#required' => FALSE,
     ];
 
     $form['email'] = [
